@@ -29,7 +29,7 @@ At a high level, the repository:
 
 <a id="note-repo-pt"></a>**[2] PT** — parameters: `Wm, Alpha, Beta, Wc, Tmax, Gamma`.
 
-<a id="note-repo-stats"></a>**[3] Statistical tests** — include Welch ANOVA, Games–Howell post hoc tests, and Kruskal–Wallis.
+<a id="note-repo-stats"></a>**[3] Statistical tests** — include `Welch ANOVA, Games–Howell post hoc tests, Kruskal–Wallis`.
 
 ## Data
 
@@ -43,14 +43,14 @@ TGSIM is public trajectory data from FHWA’s Third Generation Simulation projec
 2. Run one model:
 
 ```bash
-python idm_calibration_tgsim_V2.py
-python pt_calibration_tgsim_V2.py
+python Idm_calibration_tgsim.py
+python Pt_calibration_tgsim.py
 ```
 
 3. Run sweep experiments:
 
 ```bash
-python run_calibration_sweep.py --script both --combos "1,0" "1,1"
+python Run_calibration_sweep.py --script both --combos "1,0" "1,1"
 ```
 
 ## Citation
