@@ -7,7 +7,7 @@
 
 ---
 
-## Paper & Repository (summary)
+## Paper & Repository
 
 **Paper.** *A Data-Driven Comparison of Car-Following Behavior Between Autonomous and Human-Driven Vehicles* examines longitudinal car-following using **TGSIM trajectory data**. Two models are calibrated per follower–leader episode: **IDM** and a **Prospect Theory (PT)** formulation. Calibration quality is judged with trajectory errors (RMSE, MAE); parameter differences across **small vehicles, large vehicles, and AVs** are assessed with **Welch’s ANOVA** and **Games–Howell** post hoc tests.
 
@@ -16,15 +16,18 @@
 ## What This Repository Does
 
 At a high level, the repository:
-- extracts valid leader-follower car-following episodes from TGSIM trajectories,
-- calibrates model (`IDM` and `PT`)* parameters for each episode using a Genetic Algorithm (GA),
-- evaluates fit quality with trajectory-level error metrics (RMSE, MAE, R-squared),
-- aggregates parameter/performance summaries by vehicle type,
-- runs `Statistical Tests`** across vehicle classes.
 
-- * IDM parameters: `T, a, b, v0, s0, delta`.
-- * PT parameters: `Wm, Alpha, Beta, Wc, Tmax, Gamma`.
-- ** Statistical-test: Welch ANOVA, Games-Howell, Kruskal-Wallis
+- extracts valid leader–follower car-following episodes from TGSIM trajectories,
+- calibrates **Intelligent Driver Model (IDM)**[^idm] and **Prospect Theory (PT)**[^pt] parameters for each episode using a Genetic Algorithm (GA),
+- evaluates fit quality with trajectory-level error metrics (RMSE, MAE, R-squared),
+- aggregates parameter / performance summaries by vehicle type,
+- runs statistical tests[^stats] across vehicle classes.
+
+[^idm]: IDM parameters calibrated in `idm_calibration_tgsim_V2.py`: `T, a, b, v0, s0, delta`.
+
+[^pt]: PT parameters calibrated in `pt_calibration_tgsim_V2.py`: `Wm, Alpha, Beta, Wc, Tmax, Gamma`.
+
+[^stats]: Statistical comparisons across vehicle types include Welch ANOVA, Games–Howell post hoc tests, and Kruskal–Wallis (where implemented).
 
 ## Data
 
