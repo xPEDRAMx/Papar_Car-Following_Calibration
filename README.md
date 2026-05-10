@@ -7,7 +7,11 @@
 
 ---
 
-This repository contains the calibration pipelines used in the paper "A Data-Driven Comparison of Car-Following Behavior Between Autonomous and Human-Driven Vehicles." The code calibrates car-following models from trajectory data and compares behavior across small vehicles, large vehicles, and autonomous vehicles (AVs).
+## Paper & Repository (summary)
+
+**Paper.** *A Data-Driven Comparison of Car-Following Behavior Between Autonomous and Human-Driven Vehicles* examines longitudinal car-following using **TGSIM trajectory data**. Two models are calibrated per follower–leader episode: **IDM** and a **Prospect Theory (PT)** formulation. Calibration quality is judged with trajectory errors (RMSE, MAE); parameter differences across **small vehicles, large vehicles, and AVs** are assessed with **Welch’s ANOVA** and **Games–Howell** post hoc tests.
+
+**Repository.** This codebase implements that pipeline end-to-end: episode extraction from trajectory CSVs, **genetic-algorithm** calibration, optional multiprocessing / Numba, exports (CSV / Excel / plots), and the statistical comparisons above. Defaults target **balanced sampling near AV episodes** so classes are comparable.
 
 ## What This Repository Does
 
@@ -53,13 +57,11 @@ This behavior can be switched in code to calibrate all episodes.
 
 ### 3) Calibration objective
 
-For both models, the objective minimized by GA is:
+For both models, the GA minimizes a **weighted sum of absolute position and speed errors** over all time steps *j* in the episode:
 
-\[
-\sum_j \left( W_{pos} \cdot |x_{obs,j} - x_{sim,j}| + W_{speed} \cdot |v_{obs,j} - v_{sim,j}| \right)
-\]
+`sum_over_j ( W_POS * |x_obs[j] - x_sim[j]| + W_SPEED * |v_obs[j] - v_sim[j]| )`
 
-with configurable `W_POS` and `W_SPEED`.
+Weights are set in code as `W_POS` and `W_SPEED` (and can be swept via `run_calibration_sweep.py`).
 
 ### 4) Robust calibration mode
 
@@ -85,10 +87,9 @@ They also export:
 
 ## Data
 
-The analysis uses **Third Generation Simulation (TGSIM)** <a href="https://catalog.data.gov/dataset/third-generation-simulation-data-tgsim?from_hint=eyJxIjoidGdzaW0ifQ%3D%3D "></a> <a href="https://journals.sagepub.com/doi/10.1177/03611981241257257"><img alt="Paper — TGSIM" src="https://img.shields.io/static/v1?label=Paper&message=TGSIM%20TRR&color=purple&style=flat-square" style="vertical-align: middle;"></a>
+The analysis uses **Third Generation Simulation (TGSIM)** <a href="https://catalog.data.gov/dataset/third-generation-simulation-data-tgsim?from_hint=eyJxIjoidGdzaW0ifQ%3D%3D"><img alt="Data — TGSIM" src="https://img.shields.io/static/v1?label=Data&message=TGSIM&color=blue&style=flat-square" style="vertical-align: middle;"></a> <a href="https://journals.sagepub.com/doi/10.1177/03611981241257257"><img alt="Paper — TGSIM" src="https://img.shields.io/static/v1?label=Paper&message=TGSIM%20TRR&color=purple&style=flat-square" style="vertical-align: middle;"></a>
 
-- Dataset page: [Third Generation Simulation Data (TGSIM)](https://catalog.data.gov/dataset/third-generation-simulation-data-tgsim?from_hint=eyJxIjoidGdzaW0ifQ%3D%3D)
-- TGSIM reference paper: [Transportation Research Record article](https://journals.sagepub.com/doi/10.1177/03611981241257257)
+TGSIM is public trajectory data from FHWA’s Third Generation Simulation project (e.g., I-395 DC, I-294 IL; see the [Data.gov catalog entry](https://catalog.data.gov/dataset/third-generation-simulation-data-tgsim?from_hint=eyJxIjoidGdzaW0ifQ%3D%3D)). Place the trajectory CSVs expected by the scripts under `Dataset/`. The [TGSIM TRR paper](https://journals.sagepub.com/doi/10.1177/03611981241257257) describes the data collection and context.
 
 ## Main Scripts
 
