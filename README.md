@@ -1,4 +1,4 @@
-<h1 align="center"> Papar Car-Following Calibration </h1>
+<h1 align="center"> A Data-Driven Comparison of Car-Following Behavior Between Autonomous and Human-Driven Vehicles </h1>
 
 <p align="center">
   <a href="#"><img alt="TRR Paper" src="https://img.shields.io/static/v1?label=TRR%20Paper&message=Under%20Review&color=purple&style=flat-square"></a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -20,11 +20,11 @@ At a high level, the repository:
 - calibrates model (`IDM` and `PT`)* parameters for each episode using a Genetic Algorithm (GA),
 - evaluates fit quality with trajectory-level error metrics (RMSE, MAE, R-squared),
 - aggregates parameter/performance summaries by vehicle type,
-- runs statistical tests** across vehicle classes.
+- runs `Statistical Tests`** across vehicle classes.
 
--* IDM parameters: `T, a, b, v0, s0, delta`.
--* PT parameters: `Wm, Alpha, Beta, Wc, Tmax, Gamma`.
--** Statistical-test: Welch ANOVA, Games-Howell, Kruskal-Wallis
+- * IDM parameters: `T, a, b, v0, s0, delta`.
+- * PT parameters: `Wm, Alpha, Beta, Wc, Tmax, Gamma`.
+- ** Statistical-test: Welch ANOVA, Games-Howell, Kruskal-Wallis
 
 ## Data
 
