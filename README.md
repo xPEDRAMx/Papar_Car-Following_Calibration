@@ -18,16 +18,18 @@
 At a high level, the repository:
 
 - extracts valid leader–follower car-following episodes from TGSIM trajectories,
-- calibrates **Intelligent Driver Model (IDM)**[^idm] and **Prospect Theory (PT)**[^pt] parameters for each episode using a Genetic Algorithm (GA),
+- calibrates **Intelligent Driver Model (IDM)**<sup><a href="#note-repo-idm">1</a></sup> and **Prospect Theory (PT)**<sup><a href="#note-repo-pt">2</a></sup> parameters for each episode using a Genetic Algorithm (GA),
 - evaluates fit quality with trajectory-level error metrics (RMSE, MAE, R-squared),
 - aggregates parameter / performance summaries by vehicle type,
-- runs statistical tests[^stats] across vehicle classes.
+- runs statistical tests<sup><a href="#note-repo-stats">3</a></sup> across vehicle classes.
 
-[^idm]: IDM parameters calibrated in `idm_calibration_tgsim_V2.py`: `T, a, b, v0, s0, delta`.
+**Notes:**
 
-[^pt]: PT parameters calibrated in `pt_calibration_tgsim_V2.py`: `Wm, Alpha, Beta, Wc, Tmax, Gamma`.
+<a id="note-repo-idm"></a>**[1] IDM** — parameters calibrated in `idm_calibration_tgsim_V2.py`: `T, a, b, v0, s0, delta`.
 
-[^stats]: Statistical comparisons across vehicle types include Welch ANOVA, Games–Howell post hoc tests, and Kruskal–Wallis (where implemented).
+<a id="note-repo-pt"></a>**[2] PT** — parameters calibrated in `pt_calibration_tgsim_V2.py`: `Wm, Alpha, Beta, Wc, Tmax, Gamma`.
+
+<a id="note-repo-stats"></a>**[3] Statistical tests** — comparisons across vehicle types include Welch ANOVA, Games–Howell post hoc tests, and Kruskal–Wallis (where implemented).
 
 ## Data
 
